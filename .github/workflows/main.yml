@@ -77,9 +77,18 @@ jobs:
       with:
           path: '.'
           output_path: 'kics-results.json'
+          
     - name: display kics results
       run: |
           cat kics-results.json 
+
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: kics-results.json
+        path: kics-results.json
+        retention-days: 5
+        
     - name: Break Build?
       run: |     
           TOTAL_SEVERITY_COUNTER=`grep '"totalCounter"':' ' kics-results.json | awk {'print $2'}`
@@ -89,11 +98,3 @@ jobs:
           SEVERITY_COUNTER_INFO=`grep '"MEDIUM"':' ' kics-results.json | awk {'print $2'} | sed 's/.$//'`
           echo "TOTAL SEVERITY COUNTER $TOTAL_SEVERITY_COUNTER"
           if [ "$SEVERITY_COUNTER_HIGH" -ge "1" ];then echo "Please fix all $SEVERITY_COUNTER_HIGH HIGH SEVERITY COUNTERS" && exit 1;fi
-          
-    - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v2
-      with:
-        name: kics-results.json
-        path: kics-results.json
-        retention-days: 5
-       
