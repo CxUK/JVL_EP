@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  SAST:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -65,3 +65,17 @@ jobs:
           sca_password: Barn4Max-
           params: --config=cx.config 
           # --bug-tracker=NONE --checkmarx.version=9.0 
+      
+  KICS:     
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: run kics Scan
+      uses: checkmarx/kics-github-action@v1.0
+      with:
+          path: 'terraform'
+          output_path: 'results.json'
+    - name: display kics results
+      run: |
+          cat results.json 
