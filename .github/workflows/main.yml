@@ -59,11 +59,11 @@ jobs:
           # Provide SCA Access Control URL
           # sca_access_control_url: # optional, default is https://platform.checkmarx.net
           # Provide SCA Tenant
-          sca_tenant: CxUK-Andrew 
+          sca_tenant: ${{secrets.SCA_TENANT}}
           # Provide SCA Username
-          sca_username: DevOpsUK2
+          sca_username: ${{secrets.SCA_USERID}}
           # Provide SCA Password
-          sca_password: Barn4Max-
+          sca_password: ${{secrets.SCA_PASSWORD}}
           params: --config=cx.config 
           # --bug-tracker=NONE --checkmarx.version=9.0 
       
