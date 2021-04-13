@@ -2,8 +2,8 @@ name: CxFlow
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
+  #push:
+    #branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -46,6 +46,7 @@ jobs:
           break_build: true
           # Vulnerability Scanners (sast, sca, ast, cxgo):  
           scanners: sast, sca
+          bug_tracker: githubpull
           # Incremental Scans?
           incremental: false
           # Additional CLI parameters
