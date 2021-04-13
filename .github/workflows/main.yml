@@ -46,7 +46,7 @@ jobs:
           break_build: true
           # Vulnerability Scanners (sast, sca, ast, cxgo):  
           scanners: sast, sca
-          bug_tracker: GITHUBPULL
+          # bug_tracker: GITHUBPULL
           # Incremental Scans?
           incremental: false
           # Additional CLI parameters
